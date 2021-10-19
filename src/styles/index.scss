@@ -1,3 +1,5 @@
+@import 'mixins';
+
 * {
     margin: 0;
     padding: 0;
@@ -17,8 +19,6 @@ html {
     background-color: var(--bg);
     font-size: 100%;
     color: var(--white);
-    font-family: 'Lexend Deca', sans-serif;
-    padding: 30px;
 }
 
 body {
@@ -39,7 +39,7 @@ main {
 
 h1 {
     font-family: 'Inter', sans-serif;
-    font-size: 30px;
+    @include fluid('font-size', 320px, 1600px, 30px, 40px);
 
     @media (min-width: 1000px) {
         font-size: 35px;
