@@ -1,0 +1,27 @@
+{
+    "plugins": ["prettier"],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "allowImportExportEverywhere": true
+    },
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "trailingComma": "es5",
+                "tabWidth": 4,
+                "singleQuote": true
+            }
+        ]
+    },
+    "extends": ["plugin:prettier/recommended"],
+    "env": {
+        "es6": true,
+        "browser": true
+    }
+}

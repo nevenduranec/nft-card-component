@@ -4,7 +4,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const buildPath = path.resolve(__dirname, 'dist')
 
@@ -50,7 +50,7 @@ module.exports = {
                                 outputStyle: 'expanded',
                                 sourceMap: true,
                                 sourceMapContents: true,
-                            }
+                            },
                         },
                     },
                 ],
@@ -70,33 +70,30 @@ module.exports = {
             },
             {
                 test: /\.html$/i,
-                loader: "html-loader",
+                loader: 'html-loader',
                 options: {
                     sources: {
                         list: [
                             // All default supported tags and attributes
-                            "...",
+                            '...',
                             {
-                                tag: "img",
-                                attribute: "data-srcset",
-                                type: "srcset",
+                                tag: 'img',
+                                attribute: 'data-srcset',
+                                type: 'srcset',
                             },
                             {
-                                tag: "source",
-                                attribute: "data-srcset",
-                                type: "srcset",
+                                tag: 'source',
+                                attribute: 'data-srcset',
+                                type: 'srcset',
                             },
                         ],
-                    }
-                }
+                    },
+                },
             },
         ],
     },
     optimization: {
-        minimizer: [
-            `...`,
-            new CssMinimizerPlugin(),
-        ],
+        minimizer: [`...`, new CssMinimizerPlugin()],
     },
     plugins: [
         new FaviconsWebpackPlugin({
@@ -136,6 +133,6 @@ module.exports = {
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: 'styles.[contenthash].css',
-        })
+        }),
     ],
 }

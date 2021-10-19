@@ -1,0 +1,20 @@
+{
+    "plugins": [
+        "stylelint-scss",
+        "stylelint-selector-bem-pattern"
+    ],
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "indentation": 4,
+        "plugin/selector-bem-pattern": {
+            "preset": "bem",
+            "utilitySelectors": "^\\.(u|l)-[a-z]+$",
+            "ignoreSelectors": []
+        },
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": true,
+        "at-rule-empty-line-before": null,
+        "declaration-empty-line-before": null,
+        "no-descending-specificity": null
+    }
+}

@@ -20,7 +20,6 @@ module.exports = {
          * https://github.com/postcss/autoprefixer
          */
         autoprefixer(),
-        require('postcss-nested'),
         require('postcss-pxtorem'),
     ],
 }

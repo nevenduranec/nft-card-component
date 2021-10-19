@@ -3,21 +3,23 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     mode: 'development',
     devtool: 'eval-cheap-module-source-map',
-    entry: ['./src/index.js',],
+    entry: ['./src/index.js'],
     devServer: {
         host: '0.0.0.0',
         port: 8888,
     },
     target: 'web',
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
             {
                 test: /\.s(a|c)ss$/,
-                use: [{
+                use: [
+                    {
                         // creates style nodes from JS strings
                         loader: 'style-loader',
                     },
@@ -45,21 +47,25 @@ module.exports = {
             {
                 // Load all images as base64 encoding if they are smaller than 8192 bytes
                 test: /\.(png|jpg|gif)$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        // On development we want to see where the file is coming from, hence we preserve the [path]
-                        name: '[path][name].[ext]?hash=[hash:20]',
-                        limit: 8192,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            // On development we want to see where the file is coming from, hence we preserve the [path]
+                            name: '[path][name].[ext]?hash=[hash:20]',
+                            limit: 8192,
+                        },
                     },
-                }, ],
+                ],
             },
             {
                 // Load all icons
                 test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
-                use: [{
-                    loader: 'file-loader',
-                }, ],
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             },
         ],
     },
