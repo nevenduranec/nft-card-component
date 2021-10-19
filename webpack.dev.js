@@ -5,6 +5,7 @@ module.exports = {
     devtool: 'eval-cheap-module-source-map',
     entry: ['./src/index.js',],
     devServer: {
+        host: '0.0.0.0',
         port: 8888,
     },
     target: 'web',

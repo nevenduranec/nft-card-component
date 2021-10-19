@@ -1,5 +1,6 @@
 const path = require('path')
 
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -55,17 +56,8 @@ module.exports = {
                 ],
             },
             {
-                // Load all images as base64 encoding if they are smaller than 8192 bytes
-                test: /\.(png|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            name: '[name].[hash:20].[ext]',
-                            limit: 8192,
-                        },
-                    },
-                ],
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
             },
             {
                 // Load all icons
@@ -76,6 +68,28 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+                options: {
+                    sources: {
+                        list: [
+                            // All default supported tags and attributes
+                            "...",
+                            {
+                                tag: "img",
+                                attribute: "data-srcset",
+                                type: "srcset",
+                            },
+                            {
+                                tag: "source",
+                                attribute: "data-srcset",
+                                type: "srcset",
+                            },
+                        ],
+                    }
+                }
+            },
         ],
     },
     optimization: {
@@ -85,6 +99,35 @@ module.exports = {
         ],
     },
     plugins: [
+        new FaviconsWebpackPlugin({
+            // Your source logo
+            logo: './src/assets/icon.png',
+            // The prefix for all image files (might be a folder or a name)
+            prefix: 'icons-[contenthash]/',
+            // Generate a cache file with control hashes and
+            // don't rebuild the favicons until those hashes change
+            persistentCache: true,
+            // Inject the html into the html-webpack-plugin
+            inject: true,
+            // favicon background color (see https://github.com/haydenbleasel/favicons#usage)
+            background: '#fff',
+            // favicon app title (see https://github.com/haydenbleasel/favicons#usage)
+            title: '{{projectName}}',
+
+            // which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
+            icons: {
+                android: true,
+                appleIcon: true,
+                appleStartup: true,
+                coast: false,
+                favicons: true,
+                firefox: true,
+                opengraph: false,
+                twitter: false,
+                yandex: false,
+                windows: false,
+            },
+        }),
         new HtmlWebpackPlugin({
             template: './index.html',
             // Inject the js bundle at the end of the body of the given template
