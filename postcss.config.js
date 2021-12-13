@@ -19,7 +19,9 @@ module.exports = {
          * Adds vendor prefixes to css attributes
          * https://github.com/postcss/autoprefixer
          */
+        require('postcss-pxtorem', {
+            rootValue: 18,
+        }),
         autoprefixer(),
-        require('postcss-pxtorem'),
     ],
 }

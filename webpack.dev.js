@@ -7,6 +7,7 @@ module.exports = {
     devServer: {
         host: '0.0.0.0',
         port: 8888,
+        static: __dirname,
     },
     target: 'web',
     module: {
@@ -27,6 +28,7 @@ module.exports = {
                         // translates CSS into CommonJS
                         loader: 'css-loader',
                         options: {
+                            url: false,
                             sourceMap: true,
                         },
                     },
@@ -42,6 +44,20 @@ module.exports = {
                         },
                     },
                     // Please note we are not running postcss here
+                ],
+            },
+            {
+                // Load all images as base64 encoding if they are smaller than 8192 bytes
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            // On development we want to see where the file is coming from, hence we preserve the [path]
+                            name: '[path][name].[ext]?hash=[hash:20]',
+                            limit: 18192,
+                        },
+                    },
                 ],
             },
             {
