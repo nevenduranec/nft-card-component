@@ -60,13 +60,8 @@ module.exports = {
                 type: 'asset/resource',
             },
             {
-                // Load all icons
-                test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                    },
-                ],
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/i,
+                type: 'asset/resource',
             },
             {
                 test: /\.html$/i,
